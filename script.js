@@ -4,7 +4,7 @@ document.getElementById('formulario').addEventListener('submit', async function 
     const formData = new FormData(this);
 
     try {
-        const response = await fetch('https://stadeliaenergia-io.onrender.com/enviar-email', {
+        const response = await fetch('https://ffenergia.onrender.com/enviar-email', {
             method: 'POST',
             body: formData
         });
