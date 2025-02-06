@@ -195,10 +195,23 @@
 
 
 
-    <script>
-    document.querySelector(".menu-toggle").addEventListener("click", function () {
-            document.querySelector(".nav-links").classList.toggle("active");
+    <script>document.addEventListener("DOMContentLoaded", function () {
+        const menuToggle = document.querySelector(".menu-toggle");
+        const navLinks = document.querySelector(".nav-links");
+        const links = document.querySelectorAll(".nav-links a");
+    
+        // Fecha o menu ao clicar em um link
+        links.forEach(link => {
+            link.addEventListener("click", () => {
+                navLinks.classList.remove("active");
+            });
         });
+    
+        // Alternar menu ao clicar no botão
+        menuToggle.addEventListener("click", () => {
+            navLinks.classList.toggle("active");
+        });
+    });
     </script>
 
     <script>
