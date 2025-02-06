@@ -666,7 +666,7 @@ footer {
     }
 }
 
-@media (max-width: 768px) {
+@media (min-width: 1600px) {
     .nav-links {
         display: none; /* Esconder menu */
         flex-direction: column;
