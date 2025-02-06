@@ -21,3 +21,59 @@ document.getElementById('formulario').addEventListener('submit', async function 
         alert(`❌ Erro ao enviar formulário: ${error.message}`);
     }
 });
+
+document.getElementById('formulario').addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    let nome = document.getElementById('nome').value.trim();
+    let ddd = document.getElementById('ddd').value.trim();
+    let telefone = document.getElementById('telefone').value.trim();
+    let email = document.getElementById('email').value.trim();
+    let fatura = document.getElementById('fatura').files.length; // Verifica se um arquivo foi anexado
+
+    // Regex para validar e-mail
+    let emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+    if (nome === "") {
+        alert("❌ Preencha seu nome completo!");
+        return;
+    }
+
+    if (!/^\d{2}$/.test(ddd)) {
+        alert("❌ O DDD deve conter exatamente **2 números**!");
+        return;
+    }
+
+    if (!/^\d{5}-\d{4}$/.test(telefone)) {
+        alert("❌ O telefone deve estar no formato **99999-9999**!");
+        return;
+    }
+
+    if (!emailValido) {
+        alert("❌ Insira um e-mail válido!");
+        return;
+    }
+
+    if (fatura === 0) {
+        alert("❌ Você precisa anexar sua conta de energia para enviar o formulário!");
+        return;
+    }
+
+    alert("✅ Formulário enviado com sucesso!");
+    this.submit();
+});
+
+// Formatar DDD (Apenas 2 números)
+document.getElementById('ddd').addEventListener('input', function (e) {
+    this.value = this.value.replace(/\D/g, '').slice(0, 2); // Remove não números e limita 2 dígitos
+});
+
+// Formatar Telefone (99999-9999)
+document.getElementById('telefone').addEventListener('input', function (e) {
+    let value = e.target.value.replace(/\D/g, '');
+    if (value.length > 5) {
+        value = value.replace(/^(\d{5})(\d{0,4})/, '$1-$2');
+    }
+    e.target.value = value;
+});
+
